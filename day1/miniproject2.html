@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <h1>Quiz</h1>
+    <script>
+        let quiz = [
+            {
+                question: "What is the capital of France?",
+                options: ["Berlin", "Paris", "Madrid", "Rome"],
+                correctAnswer: "Paris",
+                userAnswer: ""
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Earth", "Mars", "Jupiter", "Venus"],
+                correctAnswer: "Mars",
+                userAnswer: ""
+            },
+            {
+                question: "What is 2 + 2?",
+                options: ["3", "4", "5", "22"],
+                correctAnswer: "4",
+                userAnswer: ""
+            }
+        ];
+        console.log("quiz Results")
+        console.log("Q1:", quiz[0])
+        console.log("Q2:", quiz[1])
+        console.log("Q3:", quiz[2])
+        let boolean_fa = "incorrect";
+        let boolean_tr = "correct";
+        let userAnswer1 = "Paris";
+        console.log("Result:", boolean_tr)
+        let userAnswer2 = "Venus";
+        console.log("Result:", boolean_fa)
+        let userAnswer3 = "4";
+        console.log("Result:", boolean_tr)
+
+        console.log("final score:2 out of 3")
+
+    </script>
+</body>
+
+</html>

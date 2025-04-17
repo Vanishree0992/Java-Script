@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Scope Demo</title>
+</head>
+<body>
+    <h1>Open the Console to See Scope Differences</h1>
+
+    <script>
+        
+        function varScopeExample() {
+            if (true) {
+                var x = "I am var";
+            }
+            console.log("var inside function:", x); 
+        }
+        varScopeExample();
+
+        
+        function letScopeExample() {
+            if (true) {
+                let y = "I am let";
+                console.log("let inside block:", y); 
+            }
+                  }
+        letScopeExample();
+
+       
+        function constScopeExample() {
+            if (true) {
+                const z = "I am const";
+                console.log("const inside block:", z); 
+            }
+           
+        }
+        constScopeExample();
+    </script>
+</body>
+</html>

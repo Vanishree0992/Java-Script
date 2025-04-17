@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Typeof Checker</title>
+</head>
+<body>
+
+  <h2>🔍 JavaScript typeof Checker</h2>
+  <button onclick="dataTypes()">output in console</button>
+
+  <script>
+    function dataTypes() {
+      
+      const myString = "Hello World";        
+      const myNumber = 42;                  
+      const myBoolean = true;                
+      const myArray = [1, 2, 3];             
+      const myObject = { name: "vani" };    
+      const myNull = null;                   
+      let myUndefined;                       
+
+      
+      console.log("✅ Type:");
+      console.log(typeof myString);
+      console.log(typeof myNumber);
+      console.log(typeof myBoolean);
+      console.log(typeof myArray,Array.isArray);
+      console.log(typeof myObject);
+      console.log(typeof myNull);
+      console.log(typeof myUndefined);
+    }
+  </script>
+
+</body>
+</html>
