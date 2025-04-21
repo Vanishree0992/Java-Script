@@ -1,0 +1,22 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>JavaScript Console and Document Write</title> 
+</head> 
+
+<body>
+    <h1>Discounts</h1>
+    <script>
+        let cartTotal = 70; 
+        let discount = cartTotal > 50 ? cartTotal * 0.05 : 0;  
+        let finalPrice = cartTotal - discount; 
+        console.log("Cart Total: $" + cartTotal);
+        console.log("Discount Applied: $" + discount);
+        console.log("Final Price to Pay: $" + finalPrice);
+
+    </script>
+</body>
+
+</html>
