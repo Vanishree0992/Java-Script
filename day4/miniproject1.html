@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <h1>Tables</h1>
+    <script> 
+const number = prompt("Enter a number for the multiplication table:");
+const num = parseInt(number);
+if (!isNaN(num)) {
+  for (let i = 1; i <= 10; i++) {
+    const result = num * i;
+    console.log(`${num} x ${i} = ${result}`);
+  }
+} else {
+  console.log("Please enter a valid number.");
+}
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <h1>Positive Number</h1>
+    <script>
+const input = prompt("Enter a positive number:");
+let number = parseInt(input);
+if (isNaN(number) || number <= 0) {
+  console.log("Please enter a valid positive number.");
+} else {
+  let sum = 0;
+  while (number > 0) {
+    let digit = number % 10;  
+    sum += digit;            
+     
+  }
+  console.log("Sum of the digits:", sum);
+}
+        </script>
+        </body>
+        </html>

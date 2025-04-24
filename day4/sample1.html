@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <h1>ATM</h1>
+    <script>
+let balance = 5000; 
+while (true) { 
+let amount = prompt(`Your balance: $${balance}\nEnter withdrawal amount or 
+type "exit" to stop:`); 
+ 
+if (amount.toLowerCase() === "exit") { 
+console.log("Thank you for using the ATM. Have a great day!"); 
+break; 
+} 
+ 
+amount = parseFloat(amount); 
+if (isNaN(amount) || amount <= 0) {
+    console.log("Invalid amount! Please enter a valid number."); 
+continue; 
+} 
+ 
+if (amount > balance) { 
+console.log("Insufficient funds! Enter a lower amount."); 
+continue; 
+} 
+ 
+balance -= amount; 
+console.log(`Withdrawal successful! Remaining balance: $${balance}`); 
+}
+        </script>
+</body>
