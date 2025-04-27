@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <h1>Odd or Even</h1>
+    <script>
+function isPalindrome(str) {
+      let word = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+     return word === word.split('').reverse().join('');
+}
+console.log(isPalindrome("racecar"));    
+console.log(isPalindrome("Hello"));       
+    </script>
+    </body>
+    </html>

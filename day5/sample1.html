@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <h1>sample</h1>
+    <script>
+function splitBill(totalAmount, people, tipPercentage = 0) { 
+let tipAmount = (totalAmount * tipPercentage) / 100; 
+let finalAmount = totalAmount + tipAmount; 
+let perPerson = finalAmount / people; 
+console.log(`Total Bill (with Tip): $${finalAmount.toFixed(2)}`); 
+console.log(`Each person should pay: $${perPerson.toFixed(2)}`); 
+} 
+splitBill(100, 4, 10);
+splitBill(200, 5);
+    </script>
+    </body>
+    </html>
