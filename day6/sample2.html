@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+<h1>Sample</h1>
+<script>
+const students = [
+    { name: "vani", age: 18, marks: 85 },
+    { name: "subha", age: 19, marks: 90 },
+    { name: "vivek", age: 17, marks: 78 },
+    { name: "priya", age: 18, marks: 92 }
+];
+let totalMarks = 0;
+
+console.log("Student Records:\n");
+
+for (let i = 0; i < students.length; i++) {
+    const student = students[i];
+    console.log(`Name: ${student.name}, Age: ${student.age}, Marks: ${student.marks}`);
+    totalMarks += student.marks;
+}
+
+let averageMarks = totalMarks / students.length;
+console.log(`\nClass Average Marks: ${averageMarks}`);
+
+
+</script>
+
+</body>
+</html>

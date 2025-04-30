@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+<h1>Mini Project</h1>
+<script>
+  let movies = ["movie1", "movie2", "movie3", "movie4", "movie5"];
+let userInput = prompt("Enter the name of the movie you want to book:");
+let isAvailable = false;
+for (let i = 0; i < movies.length; i++) {
+    if (movies[i].toLowerCase() === userInput.toLowerCase()) {
+        isAvailable = true;
+        break;
+    }
+}
+if (isAvailable) {
+    console.log("Ticket booked");
+} else {
+    console.log("Movie not available");
+}
+    </script>
+
+</body>
+</html>
