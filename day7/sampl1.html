@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+    function Product(name, price, category) { 
+    this.name = name; 
+    this.price = price; 
+    this.category = category; 
+} 
+ 
+function ShoppingCart() { 
+    this.items = []; 
+    this.addProduct = function(product) { 
+        this.items.push(product); 
+    }; 
+    this.getTotal = function() { 
+        return this.items.reduce((total, item) => total + item.price, 0); 
+    }; 
+}
+let cart = new ShoppingCart(); 
+cart.addProduct(new Product("Laptop", 1000, "Electronics")); 
+cart.addProduct(new Product("Headphones", 200, "Accessories")); 
+ 
+console.log("Total Price:", cart.getTotal()); 
+</script>
+</body>
+</html>

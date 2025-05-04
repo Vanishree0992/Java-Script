@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+function Car(brand, model, year) {
+  this.brand = brand;
+  this.model = model;
+  this.year = year;
+
+  this.updateModel = function(newModel) {
+    this.model = newModel;
+    console.log(`🚗 Model updated to ${this.model}`);
+  };
+
+  this.displayDetails = function() {
+    console.log(`🚗 ${this.brand} ${this.model} (${this.year})`);
+  };
+}
+
+const myCar = new Car("Toyota", "Camry", 2019);
+myCar.displayDetails();  
+
+myCar.updateModel("Corolla");
+myCar.displayDetails();  
+
+</script>
+</body>
+</html>

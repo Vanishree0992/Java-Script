@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+ 
+// Product Constructor
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+
+function ShoppingCart() {
+  this.products = [];
+}
+
+
+ShoppingCart.prototype.addProduct = function(name, price) {
+ 
+  const newProduct = new Product(name, price);
+  
+
+  this.products.push(newProduct);
+};
+
+
+ShoppingCart.prototype.calculateTotal = function() {
+  return this.products.reduce((total, product) => total + product.price, 0);
+};
+
+
+const cart = new ShoppingCart();
+
+cart.addProduct("Apple", 1.5);
+cart.addProduct("Banana", 0.8);
+cart.addProduct("Orange", 2.0);
+
+
+console.log("Total Price: $" + cart.calculateTotal());
+
+
+
+</script>
+</body>
+</html>

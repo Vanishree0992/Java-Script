@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+
+function ShoppingCart() {
+  this.products = [];
+}
+
+
+ShoppingCart.prototype.addProduct = function(product) {
+  this.products.push(product);
+};
+
+
+ShoppingCart.prototype.removeProduct = function(productName) {
+  this.products = this.products.filter(product => product.name !== productName);
+};
+
+
+ShoppingCart.prototype.calculateTotal = function() {
+  return this.products.reduce((total, product) => total + product.price, 0);
+};
+
+const apple = new Product("Apple", 1.5);
+const banana = new Product("Banana", 0.8);
+const orange = new Product("Orange", 2.0);
+
+
+const cart = new ShoppingCart();
+
+
+cart.addProduct(apple);
+cart.addProduct(banana);
+cart.addProduct(orange);
+
+
+console.log("Total Price: $" + cart.calculateTotal()); 
+
+
+cart.removeProduct("Banana");
+
+
+console.log("Total Price after removal: $" + cart.calculateTotal()); 
+
+
+
+
+</script>
+</body>
+</html>

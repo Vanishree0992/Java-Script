@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+ 
+function Book(title, author, price) {
+  this.title = title;
+  this.author = author;
+  this.price = price;
+}
+
+const books = [
+  new Book("Book 1", "Author A", 15),
+  new Book("Book 2", "Author B", 25),
+  new Book("Book 3", "Author C", 10),
+  new Book("Book 4", "Author D", 30),
+  new Book("Book 5", "Author E", 20)
+];
+
+function filterBooksByPrice(books, maxPrice) {
+  return books.filter(book => book.price <= maxPrice);
+}
+
+
+const filteredBooks = filterBooksByPrice(books, 20);
+console.log(filteredBooks);
+
+
+
+</script>
+</body>
+</html>

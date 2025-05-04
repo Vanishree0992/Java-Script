@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+
+function Employee(name, position, salary) {
+  this.name = name;
+  this.position = position;
+  this.salary = salary;
+}
+
+
+Employee.prototype.getDetails = function() {
+  return `${this.name} is a ${this.position} and earns $${this.salary} per year.`;
+};
+
+
+function Manager(name, position, salary, department) {
+
+  Employee.call(this, name, position, salary);
+  
+
+  this.department = department;
+}
+
+
+Manager.prototype = Object.create(Employee.prototype);
+Manager.prototype.constructor = Manager;
+
+
+Manager.prototype.getDetails = function() {
+  return `${this.name} is a Manager of ${this.department} department and earns $${this.salary} per year.`;
+};
+
+
+const emp1 = new Employee("John Doe", "Developer", 60000);
+const mgr1 = new Manager("Jane Smith", "Manager", 80000, "Engineering");
+
+
+console.log(emp1.getDetails()); 
+console.log(mgr1.getDetails()); 
+
+
+
+
+</script>
+</body>
+</html>

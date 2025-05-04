@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+class Car {
+  constructor(brand, model, year) {
+    this.brand = brand;
+    this.model = model;
+    this.year = year;
+  }
+
+  displayDetails() {
+    console.log(`🚗 ${this.brand} ${this.model} (${this.year})`);
+  }
+
+  calculateAge() {
+    const currentYear = new Date().getFullYear();
+    return currentYear - this.year;
+  }
+}
+
+const car1 = new Car("Honda", "Civic", 2018);
+car1.displayDetails();
+console.log(`🛠️ Car Age: ${car1.calculateAge()} years`);
+
+const car2 = new Car("BMW", "X5", 2010);
+car2.displayDetails();
+console.log(`🛠️ Car Age: ${car2.calculateAge()} years`);
+</script>
+</body>
+</html>

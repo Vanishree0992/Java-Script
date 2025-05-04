@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management Console App</title>
+</head>
+<body>
+
+<script>
+   
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  
+  introduce() {
+    console.log(`👋 Hi, I'm ${this.name} and I'm ${this.age} years old.`);
+  }
+}
+
+const person1 = new Person("vani", 25);
+const person2 = new Person("subha", 30);
+const person3 = new Person("priya", 22);
+
+
+person1.introduce();
+person2.introduce();
+person3.introduce();
+ 
+</script>
+</body>
+</html>
