@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Word Counter</title>
+  <style>
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-size: 16px;
+    }
+    .counter {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Word Counter</h2>
+  <textarea id="textInput" placeholder="Type your text here..."></textarea>
+  <div class="counter">Word Count: <span id="wordCount">0</span></div>
+
+  <script>
+    const textInput = document.getElementById('textInput');
+    const wordCountDisplay = document.getElementById('wordCount');
+
+    textInput.addEventListener('input', () => {
+      const text = textInput.value.trim();
+      const words = text === '' ? [] : text.split(/\s+/);
+      wordCountDisplay.textContent = words.length;
+    });
+  </script>
+</body>
+</html>

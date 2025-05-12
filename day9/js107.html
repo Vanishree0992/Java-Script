@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Change Paragraph Text</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <p id="textParagraph">This is the original text.</p>
+  <button id="changeText">Change Text</button>
+
+  <script>
+    const button = document.getElementById("changeText");
+    const paragraph = document.getElementById("textParagraph");
+    button.addEventListener("click", () => {
+      paragraph.textContent = "The original text has been changed!";
+    });
+  </script>
+
+</body>
+</html>

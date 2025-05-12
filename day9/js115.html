@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toggle Text Content</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click the button to toggle text!</h1>
+  <p id="toggleText">This is the first text.</p>
+  <button id="toggleButton">Toggle Text</button>
+  <script>
+    const textElement = document.getElementById('toggleText');
+    const toggleButton = document.getElementById('toggleButton');
+    toggleButton.addEventListener('click', () => {
+      if (textElement.textContent === 'This is the first text.') {
+        textElement.textContent = 'This is the second text!';
+      } else {
+        textElement.textContent = 'This is the first text.';
+      }
+    });
+  </script>
+
+</body>
+</html>
