@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .loading {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unsplash Image Gallery</h1>
+    <div id="loading" class="loading">Loading images...</div>
+    <div id="gallery" class="gallery"></div>
+
+    <script>
+        const apiKey = 'YOUR_API_KEY';  
+        const apiUrl = `https://api.unsplash.com/photos?client_id=${apiKey}&per_page=20`;
+        async function fetchImages() {
+            try {
+                const response = await fetch(apiUrl);
+                const images = await response.json();
+                document.getElementById('loading').style.display = 'none';
+                const gallery = document.getElementById('gallery');
+                images.forEach(image => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = image.urls.small; 
+                    imgElement.alt = image.description || 'Unsplash Image';
+                    gallery.appendChild(imgElement);
+                });
+            } catch (error) {
+                console.error('Error fetching images:', error);
+                document.getElementById('loading').innerHTML = 'Error loading images. Please try again later.';
+            }
+        }
+
+    
+        fetchImages();
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Convert Array to Names</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 8px 12px; margin-top: 10px; }
+    pre { background-color: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>🔄 Convert Array of Objects to Array of Names</h2>
+
+  <button onclick="convertToNames()">Convert to Names</button>
+
+  <div>
+    <h3>Result:</h3>
+    <pre id="resultBox"></pre>
+  </div>
+
+  <script>
+    // Array of objects with name and other properties
+    const people = [
+      { name: 'Alice', age: 30, position: 'Developer' },
+      { name: 'Bob', age: 25, position: 'Designer' },
+      { name: 'Charlie', age: 35, position: 'Manager' },
+      { name: 'Dana', age: 28, position: 'Intern' }
+    ];
+
+    // Function to convert array of objects to an array of names
+    function convertToNames() {
+      const namesArray = people.map(person => person.name);
+      document.getElementById('resultBox').textContent = JSON.stringify(namesArray, null, 2);
+    }
+  </script>
+
+</body>
+</html>

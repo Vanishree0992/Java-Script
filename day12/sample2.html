@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Orders Management</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input, button { margin: 5px; }
+    .results { margin-top: 20px; }
+    pre { background: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Customer Orders Management</h2>
+  <div>
+    <input type="text" id="searchInput" placeholder="Enter Order ID or Customer Name">
+    <button onclick="searchOrders()">Search</button>
+  </div>
+  <div>
+    <input type="text" id="filterInput" placeholder="Filter by Customer Name">
+    <button onclick="filterByCustomer()">Filter</button>
+  </div>
+  <div>
+    <button onclick="showTotalRevenue()">Show Total Revenue</button>
+  </div>
+  <div class="results">
+    <h3>Results:</h3>
+    <pre id="resultsBox">No results yet.</pre>
+  </div>
+  <script>
+    const orders = [
+      { orderId: 'ORD001', customerName: 'Alice', items: ['Laptop', 'Mouse'], totalAmount: 1200 },
+      { orderId: 'ORD002', customerName: 'Bob', items: ['Phone'], totalAmount: 800 },
+      { orderId: 'ORD003', customerName: 'Alice', items: ['Monitor'], totalAmount: 300 }
+    ];
+    function searchOrders() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const result = orders.filter(order =>
+        order.orderId.toLowerCase() === query ||
+        order.customerName.toLowerCase() === query
+      );
+      displayResults(result.length ? result : 'No matching orders found.');
+    }
+    function filterByCustomer() {
+      const name = document.getElementById('filterInput').value.trim().toLowerCase();
+      const result = orders.filter(order => order.customerName.toLowerCase() === name);
+      displayResults(result.length ? result : 'No orders for this customer.');
+    }
+    function showTotalRevenue() {
+      const total = orders.reduce((sum, order) => sum + order.totalAmount, 0);
+      displayResults(`Total Revenue: $${total}`);
+    }
+    function displayResults(data) {
+      const resultsBox = document.getElementById('resultsBox');
+      resultsBox.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    }
+  </script>
+
+</body>
+</html>

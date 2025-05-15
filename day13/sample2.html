@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Management System</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { padding: 8px 12px; margin-top: 10px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .result { margin-top: 15px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <h2>👨‍💻 Employee Management System</h2>
+
+  <!-- Add New Employee Form -->
+  <h3>Add New Employee</h3>
+  <label for="empId">Employee ID: </label>
+  <input type="text" id="empId" placeholder="Enter employee ID">
+  <label for="empName">Employee Name: </label>
+  <input type="text" id="empName" placeholder="Enter employee name">
+  <label for="empPosition">Position: </label>
+  <input type="text" id="empPosition" placeholder="Enter employee position">
+  <label for="empDept">Department: </label>
+  <input type="text" id="empDept" placeholder="Enter employee department">
+  <button onclick="addEmployee()">Add Employee</button>
+
+  <!-- Employee List Table -->
+  <h3>Employee List</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Department</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="employeeList"></tbody>
+  </table>
+
+  <script >
+    // URL for the employee data (replace with the path if needed)
+const employeeDataUrl = 'employees.json';
+
+// Function to fetch and display employees
+function fetchEmployees() {
+  fetch(employeeDataUrl)
+    .then(response => response.json())
+    .then(data => {
+      displayEmployees(data);
+    })
+    .catch(error => {
+      console.error('Error fetching employee data:', error);
+    });
+}
+
+// Function to display employees in the table
+function displayEmployees(employees) {
+  const employeeList = document.getElementById('employeeList');
+  employeeList.innerHTML = '';
+
+  employees.forEach(employee => {
+    const row = `<tr>
+                  <td>${employee.id}</td>
+                  <td>${employee.name}</td>
+                  <td>${employee.position}</td>
+                  <td>${employee.department}</td>
+                  <td><button onclick="deleteEmployee('${employee.id}')">Delete</button></td>
+                </tr>`;
+    employeeList.innerHTML += row;
+  });
+}
+
+// Function to add a new employee
+function addEmployee() {
+  const empId = document.getElementById('empId').value.trim();
+  const empName = document.getElementById('empName').value.trim();
+  const empPosition = document.getElementById('empPosition').value.trim();
+  const empDept = document.getElementById('empDept').value.trim();
+
+  // Check if all fields are filled
+  if (!empId || !empName || !empPosition || !empDept) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const newEmployee = {
+    id: empId,
+    name: empName,
+    position: empPosition,
+    department: empDept
+  };
+
+  // Fetch existing employees, add new employee, and save
+  fetch(employeeDataUrl)
+    .then(response => response.json())
+    .then(data => {
+      data.push(newEmployee);
+
+      // Update the JSON file (in a real-world scenario, this would be done via an API call)
+      saveEmployees(data);
+      alert('Employee added successfully!');
+    })
+    .catch(error => {
+      console.error('Error adding new employee:', error);
+    });
+}
+function deleteEmployee(empId) {
+  fetch(employeeDataUrl)
+    .then(response => response.json())
+    .then(data => {
+      const filteredEmployees = data.filter(employee => employee.id !== empId);
+      saveEmployees(filteredEmployees);
+      alert('Employee deleted successfully!');
+    })
+    .catch(error => {
+      console.error('Error deleting employee:', error);
+    });
+}
+function saveEmployees(updatedEmployees) {
+  console.log('Updated Employee List:', updatedEmployees);
+  displayEmployees(updatedEmployees);
+}
+
+fetchEmployees();
+
+  </script>
+</body>
+</html>

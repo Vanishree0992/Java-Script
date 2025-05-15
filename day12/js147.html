@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort by Age</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 8px 12px; margin-bottom: 10px; }
+    table { border-collapse: collapse; width: 50%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+
+  <h2>👥 Employee List (Sorted by Age)</h2>
+
+  <button onclick="sortByAge()">Sort by Age (Ascending)</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Position</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTable"></tbody>
+  </table>
+  <script>
+    const employees = [
+      { name: 'vani', age: 34, position: 'Developer' },
+      { name: 'subha', age: 28, position: 'Designer' },
+      { name: 'priya', age: 41, position: 'Manager' },
+      { name: 'shree', age: 25, position: 'Intern' }
+    ];
+    function displayEmployees(data) {
+      const tableBody = document.getElementById('employeeTable');
+      tableBody.innerHTML = '';
+      data.forEach(emp => {
+        const row = `<tr>
+          <td>${emp.name}</td>
+          <td>${emp.age}</td>
+          <td>${emp.position}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+      });
+    }
+    function sortByAge() {
+      const sorted = [...employees].sort((a, b) => a.age - b.age);
+      displayEmployees(sorted);
+    }
+    displayEmployees(employees);
+  </script>
+
+</body>
+</html>

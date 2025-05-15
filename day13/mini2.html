@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Search App</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #movie-info { margin-top: 20px; }
+    #movie-info img { width: 200px; }
+    #error-message { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Movie Search App</h1>
+  <label for="movie-title">Enter Movie Title: </label>
+  <input type="text" id="movie-title" placeholder="e.g., Inception" />
+  <button onclick="searchMovie()">Search</button>
+  <div id="movie-info">
+    <h2 id="movie-name"></h2>
+    <p><strong>Year:</strong> <span id="movie-year"></span></p>
+    <p><strong>Plot:</strong> <span id="movie-plot"></span></p>
+    <img id="movie-poster" src="" alt="Movie Poster" />
+  </div>
+  
+  <div id="error-message"></div>
+
+  <script>
+    const apiKey = 'your_api_key_here'; 
+
+    async function searchMovie() {
+      const movieTitle = document.getElementById('movie-title').value;
+      if (!movieTitle) {
+        alert('Please enter a movie title.');
+        return;
+      }
+      document.getElementById('movie-name').textContent = '';
+      document.getElementById('movie-year').textContent = '';
+      document.getElementById('movie-plot').textContent = '';
+      document.getElementById('movie-poster').src = '';
+      document.getElementById('error-message').textContent = '';
+
+      try {
+    
+        const response = await fetch(`https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`);
+        const data = await response.json();
+
+        if (data.Response === 'True') {
+        
+          document.getElementById('movie-name').textContent = data.Title;
+          document.getElementById('movie-year').textContent = data.Year;
+          document.getElementById('movie-plot').textContent = data.Plot;
+          document.getElementById('movie-poster').src = data.Poster;
+        } else {
+        
+          document.getElementById('error-message').textContent = 'Movie not found. Please try again.';
+        }
+      } catch (error) {
+        document.getElementById('error-message').textContent = 'An error occurred. Please try again later.';
+        console.error('Error fetching movie data:', error);
+      }
+    }
+  </script>
+</body>
+</html>

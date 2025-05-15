@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade A Students</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 8px 12px; margin-bottom: 10px; }
+    table { border-collapse: collapse; width: 50%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+
+  <h2>🎓 Student List</h2>
+
+  <button onclick="showGradeA()">Show Grade A Students</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody id="studentTable"></tbody>
+  </table>
+  <script>
+    const students = [
+      { name: 'vani', grade: 'A' },
+      { name: 'arun', grade: 'B' },
+      { name: 'subha', grade: 'A' },
+      { name: 'shree', grade: 'C' },
+      { name: 'kumar', grade: 'A' }
+    ];
+    function displayStudents(data) {
+      const tableBody = document.getElementById('studentTable');
+      tableBody.innerHTML = '';
+      data.forEach(student => {
+        const row = `<tr>
+          <td>${student.name}</td>
+          <td>${student.grade}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+      });
+    }
+    function showGradeA() {
+      const gradeAStudents = students.filter(student => student.grade === 'A');
+      displayStudents(gradeAStudents);
+    }
+    displayStudents(students);
+  </script>
+
+</body>
+</html>

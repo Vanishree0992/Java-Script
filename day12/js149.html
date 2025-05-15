@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Search</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { padding: 8px; margin: 5px 0; }
+    .result { margin-top: 15px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>🔍 Product Search</h2>
+  <input type="text" id="searchInput" placeholder="Enter product name">
+  <button onclick="searchProduct()">Search</button>
+  <div class="result" id="resultBox">Enter a product name to search.</div>
+  <script>
+    const products = [
+      { name: 'Laptop', price: 1000 },
+      { name: 'Phone', price: 700 },
+      { name: 'Headphones', price: 150 },
+      { name: 'Monitor', price: 300 },
+      { name: 'Keyboard', price: 80 }
+    ];
+    function searchProduct() {
+      const input = document.getElementById('searchInput').value.trim().toLowerCase();
+      const resultBox = document.getElementById('resultBox');
+      const found = products.find(product => product.name.toLowerCase() === input);
+      if (found) {
+        resultBox.textContent = `✅ Found: ${found.name} - $${found.price}`;
+      } else {
+        resultBox.textContent = '❌ Product not found.';
+      }
+    }
+  </script>
+
+</body>
+</html>

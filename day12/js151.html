@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modify Object in Array</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 8px 12px; margin-top: 10px; }
+    pre { background-color: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>✏️ Modify an Object in Array</h2>
+
+  <label for="nameInput">Enter the name of the person to update (e.g., Alice): </label>
+  <input type="text" id="nameInput" placeholder="Enter name">
+  <label for="ageInput">New Age: </label>
+  <input type="number" id="ageInput" placeholder="Enter new age">
+  <button onclick="updateAge()">Update Age</button>
+
+  <div>
+    <h3>Updated Array:</h3>
+    <pre id="resultBox"></pre>
+  </div>
+  <script>
+    const people = [
+      { name: 'vani', age: 30, position: 'Developer' },
+      { name: 'shree', age: 25, position: 'Designer' },
+      { name: 'subha', age: 35, position: 'Manager' },
+      { name: 'priya', age: 28, position: 'Intern' }
+    ];
+    function updateAge() {
+      const nameToUpdate = document.getElementById('nameInput').value.trim();
+      const newAge = parseInt(document.getElementById('ageInput').value);
+      const person = people.find(p => p.name.toLowerCase() === nameToUpdate.toLowerCase());
+      if (person) {
+        person.age = newAge;
+        document.getElementById('resultBox').textContent = JSON.stringify(people, null, 2);
+      } else {
+        document.getElementById('resultBox').textContent = `❌ Person with name "${nameToUpdate}" not found.`;
+      }
+    }
+  </script>
+
+</body>
+</html>

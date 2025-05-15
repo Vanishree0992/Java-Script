@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NASA Picture of the Day Viewer</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    #apod-info { margin-top: 20px; }
+    img { max-width: 100%; height: auto; }
+    video { max-width: 100%; height: auto; }
+    #error-message { color: red; }
+  </style>
+</head>
+<body>
+  <h1>NASA Picture of the Day</h1>
+  <label for="date-picker">Select a Date: </label>
+  <input type="date" id="date-picker" onchange="fetchAPOD()" />
+  
+  <button onclick="fetchAPOD()">Fetch Today's Picture</button>
+
+  <div id="apod-info">
+    <h2 id="apod-title"></h2>
+    <p id="apod-date"></p>
+    <p id="apod-description"></p>
+    <div id="apod-media-container"></div>
+  </div>
+  
+  <div id="error-message"></div>
+
+  <script>
+    const apiKey = 'your_api_key_here'; 
+    const apodUrl = 'https://api.nasa.gov/planetary/apod?api_key=' + apiKey;
+    
+
+    async function fetchAPOD() {
+      const date = document.getElementById('date-picker').value || '';
+      const url = date ? `${apodUrl}&date=${date}` : apodUrl; 
+      
+      
+      document.getElementById('apod-title').textContent = '';
+      document.getElementById('apod-date').textContent = '';
+      document.getElementById('apod-description').textContent = '';
+      document.getElementById('apod-media-container').innerHTML = '';
+      document.getElementById('error-message').textContent = '';
+
+      try {
+        
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.code === 400) {
+          
+          document.getElementById('error-message').textContent = 'No data found for the selected date.';
+          return;
+        }
+
+
+        document.getElementById('apod-title').textContent = data.title;
+        document.getElementById('apod-date').textContent = `Date: ${data.date}`;
+        document.getElementById('apod-description').textContent = data.explanation;
+
+        const mediaContainer = document.getElementById('apod-media-container');
+        if (data.media_type === 'image') {
+          const img = document.createElement('img');
+          img.src = data.hdurl || data.url;
+          img.alt = data.title;
+          mediaContainer.appendChild(img);
+        } else if (data.media_type === 'video') {
+          const video = document.createElement('video');
+          video.controls = true;
+          const source = document.createElement('source');
+          source.src = data.url;
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          mediaContainer.appendChild(video);
+        }
+      } catch (error) {
+        document.getElementById('error-message').textContent = 'Error fetching data from NASA API.';
+        console.error('Error fetching APOD:', error);
+      }
+    }
+    fetchAPOD();
+  </script>
+</body>
+</html>

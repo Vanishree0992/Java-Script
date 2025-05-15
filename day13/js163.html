@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modify JSON Object in Array</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { margin: 5px; padding: 8px; }
+    pre { background: #f4f4f4; padding: 10px; margin-top: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Modify an Employee's Position</h2>
+  <label for="idInput">Employee ID:</label>
+  <input type="text" id="idInput" placeholder="e.g., E002"><br>
+  <label for="positionInput">New Position:</label>
+  <input type="text" id="positionInput" placeholder="e.g., Team Lead"><br>
+  <button onclick="modifyEmployee()">Update Position</button>
+  <h3>Updated Employee List:</h3>
+  <pre id="output"></pre>
+  <script>
+    let employees = [
+      { id: "E001", name: "John Doe", position: "Developer" },
+      { id: "E002", name: "Jane Smith", position: "Designer" },
+      { id: "E003", name: "Mike Johnson", position: "Product Manager" }
+    ];
+    function modifyEmployee() {
+      const id = document.getElementById("idInput").value.trim();
+      const newPosition = document.getElementById("positionInput").value.trim();
+      const output = document.getElementById("output");
+      const employee = employees.find(emp => emp.id === id);
+
+      if (employee) {
+        employee.position = newPosition;
+        output.textContent = JSON.stringify(employees, null, 2);
+      } else {
+        output.textContent = "Employee not found.";
+      }
+    }
+    document.getElementById("output").textContent = JSON.stringify(employees, null, 2);
+  </script>
+
+</body>
+</html>
