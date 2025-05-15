@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Play Sound on Button Click</title>
+</head>
+<body>
+  <button id="playSoundButton">Click to Play Sound</button>
+  <audio id="sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+  <script>
+    const button = document.getElementById('playSoundButton');
+    const sound = document.getElementById('sound');
+
+    button.addEventListener('click', function() {
+      sound.play(); 
+    });
+  </script>
+
+</body>
+</html>

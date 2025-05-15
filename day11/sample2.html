@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h1 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      background: #e2e2e2;
+      margin: 5px 0;
+      border-radius: 4px;
+    }
+    .remove-btn {
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Expense Tracker</h1>
+    <input type="text" id="expense-name" placeholder="Expense Name">
+    <input type="number" id="expense-amount" placeholder="Amount">
+    <button onclick="addExpense()">Add Expense</button>
+    <ul id="expense-list"></ul>
+    <div class="total">Total: $<span id="total">0</span></div>
+  </div>
+
+  <script>
+    let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+    function saveExpenses() {
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+    }
+
+    function renderExpenses() {
+      const list = document.getElementById('expense-list');
+      const totalDisplay = document.getElementById('total');
+      list.innerHTML = '';
+      let total = 0;
+
+      expenses.forEach((expense, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${expense.name}: $${parseFloat(expense.amount).toFixed(2)}
+          <button class="remove-btn" onclick="removeExpense(${index})">X</button>
+        `;
+        list.appendChild(li);
+        total += parseFloat(expense.amount);
+      });
+
+      totalDisplay.textContent = total.toFixed(2);
+    }
+
+    function addExpense() {
+      const nameInput = document.getElementById('expense-name');
+      const amountInput = document.getElementById('expense-amount');
+
+      const name = nameInput.value.trim();
+      const amount = parseFloat(amountInput.value);
+
+      if (name && !isNaN(amount)) {
+        expenses.push({ name, amount });
+        nameInput.value = '';
+        amountInput.value = '';
+        saveExpenses();
+        renderExpenses();
+      } else {
+        alert('Please enter a valid name and amount.');
+      }
+    }
+
+    function removeExpense(index) {
+      expenses.splice(index, 1);
+      saveExpenses();
+      renderExpenses();
+    }
+
+    renderExpenses();
+  </script>
+</body>
+</html>

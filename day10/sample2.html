@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Key Logger</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+    }
+    .last-key {
+      font-weight: bold;
+      color: #007bff;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      background: #f4f4f4;
+      margin-bottom: 4px;
+      padding: 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔍 Real-Time Key Logger</h2>
+  <input type="text" id="keyInput" placeholder="Type something..." autofocus />
+
+  <div class="output">
+    <p>Last Key Pressed: <span class="last-key" id="lastKey">None</span></p>
+    <h3>Pressed Keys:</h3>
+    <ul id="keyList"></ul>
+  </div>
+
+  <script>
+    const keyInput = document.getElementById('keyInput');
+    const lastKey = document.getElementById('lastKey');
+    const keyList = document.getElementById('keyList');
+
+    keyInput.addEventListener('keydown', (event) => {
+      const key = event.key;
+      lastKey.textContent = key;
+
+      const li = document.createElement('li');
+      li.textContent = key;
+      keyList.appendChild(li);
+    });
+  </script>
+
+</body>
+</html>
