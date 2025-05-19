@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syntax Error Handling</title>
+</head>
+<body>
+    <script>
+if (!localStorage.getItem("errorLog")) {
+    localStorage.setItem("errorLog", JSON.stringify([]));
+}
+function logErrorToLocalStorage(error) {
+    const errorLog = JSON.parse(localStorage.getItem("errorLog"));
+    const errorDetails = {
+        message: error.message,
+        stack: error.stack,
+        timestamp: new Date().toISOString(),
+    };
+    errorLog.push(errorDetails);
+    localStorage.setItem("errorLog", JSON.stringify(errorLog));
+}
+function riskyFunction() {
+    try {
+        let result = someUndefinedFunction();
+    } catch (error) {
+        console.error("Error caught:", error.message);
+        logErrorToLocalStorage(error); 
+    }
+}
+riskyFunction();
+function displayLoggedErrors() {
+    const errorLog = JSON.parse(localStorage.getItem("errorLog"));
+    if (errorLog && errorLog.length > 0) {
+        console.table(errorLog);
+    } else {
+        console.log("No errors logged.");
+    }
+}
+displayLoggedErrors();
+
+
+
+    </script>
+</body>
+</html>
